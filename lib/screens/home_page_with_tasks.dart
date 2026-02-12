@@ -116,7 +116,7 @@ List<String> activeCategories = categoryCounts.keys
                  ListView.builder(
                   shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                          itemCount: taskProvider.allTasks.length,
+                          itemCount: filteredTasks.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -126,22 +126,7 @@ List<String> activeCategories = categoryCounts.keys
                         
               );
               },)
-        //       StreamBuilder<QuerySnapshot>(
-        //         stream: FirebaseFirestore.instance.collection('users').doc(widget.userModel.uid).collection('tasks').where('taskCategory',isEqualTo: selectedCategory,).where('date',isEqualTo:todayStr ).snapshots(),
-        //         builder: (context,snapshot){
-        //         if(!snapshot.hasData)
-        //         return Center(child: CircularProgressIndicator(),);
-        //       List<TaskModel> tasks = snapshot.data!.docs.map((doc) {
-        //         return TaskModel.fromMap(doc.data() as Map<String, dynamic>);
-        //       }).toList();
-        //       if (tasks.isEmpty) {
-        //           return Padding(
-        //             padding: const EdgeInsets.all(20.0),
-        //             child: Center(child: Text("No tasks found for today in $selectedCategory")),
-        //           );
-        //         }
-             
-        // }  )
+        
             
             ]
           ],

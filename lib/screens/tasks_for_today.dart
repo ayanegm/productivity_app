@@ -52,7 +52,7 @@ Future.microtask(() {
         String todayStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigatorBar(),
+      bottomNavigationBar: CustomBottomNavigatorBar(selectedIndex: 1,),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 29),
         child: Column(children: [

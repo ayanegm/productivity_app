@@ -70,7 +70,7 @@ void _onDaySelected(DateTime day,DateTime focusedDay){
   Widget build(BuildContext context) {
     
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigatorBar(),
+      bottomNavigationBar: CustomBottomNavigatorBar(selectedIndex: 3,),
       appBar: AppBar(
         title: Center(child: Text('calendar')),
       ),

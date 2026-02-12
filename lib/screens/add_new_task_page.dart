@@ -34,7 +34,7 @@ String finalPeriod = "AM";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigatorBar(),
+      bottomNavigationBar: CustomBottomNavigatorBar(selectedIndex: 2,),
       body: SingleChildScrollView(
         child: Form(
           key:formState ,

@@ -97,7 +97,7 @@ batch.set(analyticsRef, {
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:CustomBottomNavigatorBar(),
+      bottomNavigationBar:CustomBottomNavigatorBar(selectedIndex: 1,),
       appBar: AppBar(
         
         title:   Center(child: Text('Timer',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),))

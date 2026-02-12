@@ -55,7 +55,7 @@ class AccountPage extends StatelessWidget {
           ],
         ),
       ),
-       bottomNavigationBar: CustomBottomNavigatorBar()
+       bottomNavigationBar: CustomBottomNavigatorBar(selectedIndex: 0,)
     );
   }
 }

@@ -24,7 +24,7 @@ class _AnothTasksState extends State<DisplayTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigatorBar(),
+      bottomNavigationBar: CustomBottomNavigatorBar(selectedIndex: 1,),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 29),
         child: Column(children: [

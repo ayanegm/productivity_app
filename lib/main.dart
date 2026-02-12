@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:productivity_app/app/app.dart';
 import 'package:productivity_app/firebase_options.dart';
 import 'package:productivity_app/helper/firebase_notification.dart';
 import 'package:productivity_app/helper/test_page.dart';

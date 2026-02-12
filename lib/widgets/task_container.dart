@@ -12,7 +12,7 @@ TaskModel task;
       height: 90,
       width:double.infinity,
       decoration: BoxDecoration(
-      color: task.isAchieved ? Color(0xFFf9f9f9) : Colors.white,
+      color:  Colors.white,
         borderRadius:BorderRadius.circular(10),
       ),
       
@@ -56,7 +56,11 @@ TaskModel task;
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return TaskTimerPage(taskModel: task,);
               },));
-            }, icon: Icon(Icons.play_circle_outline,size: 32,))
+            }, icon: Icon(Icons.play_circle_outline,size: 32,)),
+
+            if(task.isAchieved)
+              Icon(Icons.check_circle_outline,size: 32,color: Color(0xFF53ceaf))
+            
         ],)
         
       ],),

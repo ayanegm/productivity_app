@@ -11,10 +11,8 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
  getToken() async {
   try {
-    // 1. تعريف المتغير أولاً
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    // 2. طلب التصريح من المستخدم (هذا يجب أن يحدث أولاً)
     NotificationSettings settings = await messaging.requestPermission(
       alert: true,
       badge: true,
