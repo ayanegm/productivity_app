@@ -54,7 +54,7 @@ List<String> activeCategories = categoryCounts.keys
               padding: const EdgeInsets.all(15),
               shrinkWrap: true, 
               physics: const NeverScrollableScrollPhysics(),
-              childAspectRatio: 3,
+              childAspectRatio: 2.2,
               children: [
                 GestureDetector(
                   onTap: () {

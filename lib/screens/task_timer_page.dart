@@ -81,6 +81,7 @@ batch.update(taskRef, {'isAchieved': true});
 batch.set(analyticsRef, {
     'achievedTasks': FieldValue.increment(1),
     'notAchieved': FieldValue.increment(-1),
+    widget.taskModel.taskCategory: FieldValue.increment(-1),
   }, SetOptions(merge: true));
     try {
     await batch.commit();

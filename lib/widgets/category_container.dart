@@ -17,7 +17,7 @@ class CategoryContainer extends StatelessWidget {
     final String imagePath = style['image'];
     return Container(
             padding: EdgeInsets.only(left: 13),
-            height: 110,width: 250,
+            height: 190,width: 250,
           decoration: BoxDecoration(
             color: Color(0xFFddf6f0),
             borderRadius: BorderRadius.circular(15),

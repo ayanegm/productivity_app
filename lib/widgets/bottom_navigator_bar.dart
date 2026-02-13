@@ -5,7 +5,6 @@ import 'package:productivity_app/screens/add_new_task_page.dart';
 import 'package:productivity_app/screens/calender_screen.dart';
 import 'package:productivity_app/screens/fake_page.dart';
 import 'package:productivity_app/screens/home_page.dart';
-import 'package:productivity_app/screens/personal_page.dart';
 import 'package:productivity_app/screens/tasks_for_today.dart';
 
 class CustomBottomNavigatorBar extends StatelessWidget {

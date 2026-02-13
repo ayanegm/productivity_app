@@ -28,7 +28,7 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:isLoading?CircularProgressIndicator(): Padding(
+      body:isLoading?Center(child: CircularProgressIndicator()): Padding(
         padding: const EdgeInsets.symmetric(horizontal:8.0,vertical: 16),
         child: Form(
           key: formState,
@@ -43,21 +43,31 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
                   SizedBox(height:20),
                   TextFieldRegiter(field_title: 'Your Email',controller: emailController,validator: (val) {
             if(val==''){
-              return 'Can\'t  to be empty';
+              return 'Can\'t to be empty';
             }
           },),
                   SizedBox(height:15 ,),
                   TextFieldRegiter(field_title: 'Your Password',controller: passwordController,validator: (val) {
             if(val==''){
-              return 'Can\'t  to be empty';
+              return 'Can\'t to be empty';
             }
           },),
                   SizedBox(height: 20,),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return ForgetPasswordPage();
-                      },));
+                    onTap: ()async {
+                      try {
+                  if (emailController.text.trim().isEmpty) {
+                    CustomSnackBar.show(context,'Please enter an email first!');
+                    return;
+                  }
+                  await FirebaseAuth.instance.sendPasswordResetEmail(
+                    email: emailController.text.trim(), 
+                  );
+                  CustomSnackBar.show(context,'Reset link sent! Check your inbox.');
+                } catch (e) {
+                  CustomSnackBar.show(context,"Error: ${e.toString()}");
+                   }
+                   
                     },
                     child: Text(
                       'Forgot Password',
@@ -73,9 +83,9 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
                    
                   if(formState.currentState!.validate()){
                        try {
-                        isLoading=true;
+                        
                         setState(() {
-                          
+                          isLoading=true;
                         });
                     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: emailController.text,
@@ -86,20 +96,40 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
                     .doc(credential.user!.uid)
                     .get();
                     UserModel user=UserModel.fromMap(doc.data() as Map<String ,dynamic>);
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                    if(credential.user!.emailVerified){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                      return HomePage();
-                    // return AddNewTaskScreen();
                     },));
-                  } on FirebaseAuthException catch (e) {
+                    }
+                    else{
+                      FirebaseAuth.instance.currentUser!.sendEmailVerification();
+                      CustomSnackBar.show(context,'Please check you  email fr verification');
+                    }
+
+                  } 
+                  
+                  on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
                       CustomSnackBar.show(context,'No user found for that email.');
                     } else if (e.code == 'wrong-password') {
                       CustomSnackBar.show(context,'Wrong password provided for that user.');
                     }
+                    else{
+                      CustomSnackBar.show(context,'error in email or password');
+                      setState(() {
+                      isLoading = false; 
+                    });
+                    }
+                  }
+                  catch(e){
+                    CustomSnackBar.show(context,'Error: ${e.toString()}');
+                      setState(() {
+                      isLoading = false; 
+                    });
                   }
                   }
                   else{
-                    print('Not valid');
+                    CustomSnackBar.show(context,'Not valid');
                   }
             
                   },),

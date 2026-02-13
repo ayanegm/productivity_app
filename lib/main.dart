@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:productivity_app/screens/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -71,8 +73,9 @@ void initState() {
   ),
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-          home: LoginPage(),
+          // home: LoginPage(),
           // home: PushNotification(),
+          home: (FirebaseAuth.instance.currentUser!=null&&FirebaseAuth.instance.currentUser!.emailVerified)?HomePage():LoginPage(),
           theme: ThemeData(
             scaffoldBackgroundColor: Color(0xFFf9f9f9),
             appBarTheme: AppBarTheme(

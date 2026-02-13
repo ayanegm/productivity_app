@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:productivity_app/models/user_model.dart';
 import 'package:productivity_app/screens/home_page.dart';
+import 'package:productivity_app/screens/login_page.dart';
 import 'package:productivity_app/widgets/button.dart';
 import 'package:productivity_app/widgets/text_field_regiter.dart';
 
@@ -94,16 +95,11 @@ final String uid;
               }
             },),
             CustomButton(text: 'Next', onTap: ()async{
-              // await FirebaseFirestore.instance.collection('users').doc(uid).set({
-              //   'uid':uid,
-              //   'email':email,
-              //   'name':nameController.text,
-              //   'bio':bioController.text
-              // });
+              
               UserModel user=UserModel(uid: uid, name: nameController.text, email: email, bio: bioController.text);
               await FirebaseFirestore.instance.collection('users').doc(uid).set(user.toMap());
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return HomePage();
+                return LoginPage();
               },));
             },)
           ],),
