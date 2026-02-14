@@ -28,43 +28,6 @@ A comprehensive productivity and task management application built with Flutter 
     *   `provider`: For state management.
     *   `firebase_core`, `firebase_auth`, `cloud_firestore`, `firebase_messaging`
 
-## Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-### Prerequisites
-
-*   Flutter SDK installed on your machine.
-*   A code editor like VS Code or Android Studio.
-*   A Firebase project.
-
-### Installation
-
-1.  **Clone the repository:**
-    ```sh
-    git clone https://github.com/ayanegm/productivity_app.git
-    cd productivity_app
-    ```
-
-2.  **Set up Firebase:**
-    *   Create a new project on the [Firebase Console](https://console.firebase.google.com/).
-    *   Follow the instructions to add an Android, iOS, and Web app to your project.
-    *   Download the `google-services.json` file and place it in the `android/app/` directory.
-    *   For web and other platforms, configure your project with the FlutterFire CLI by running:
-        ```sh
-        flutterfire configure
-        ```
-    *   This will generate a `lib/firebase_options.dart` file with your project's specific credentials.
-
-3.  **Install dependencies:**
-    ```sh
-    flutter pub get
-    ```
-
-4.  **Run the application:**
-    ```sh
-    flutter run
-    ```
 
 ## Project Structure
 
