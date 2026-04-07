@@ -2,6 +2,7 @@
 [![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/ayanegm/productivity_app)
 
 A comprehensive productivity and task management application built with Flutter and Firebase. This app helps users organize their daily tasks, track their progress, and maintain focus with an integrated timer.
+![Animation1](https://github.com/user-attachments/assets/ab63ef44-88f6-45eb-8d17-f25eae6a8ff7)
 
 ## Core Features
 
