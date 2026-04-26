@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:productivity_app/helper/bar_chart_data.dart';
 import 'package:productivity_app/models/user_model.dart';
 import 'package:productivity_app/providers/task_provider.dart';
-import 'package:productivity_app/screens/account_page.dart';
 import 'package:productivity_app/screens/home_page_with_tasks.dart';
 import 'package:productivity_app/widgets/bottom_navigator_bar.dart';
 import 'package:provider/provider.dart';

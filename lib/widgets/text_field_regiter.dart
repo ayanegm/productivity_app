@@ -10,10 +10,13 @@ String? Function(String?)?validator;
     return TextFormField(
       controller: controller,
       validator:validator,
+      cursorColor: Color.fromARGB(255, 96, 96, 96),
+
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
                 focusColor: Colors.white,
+                
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Color.fromARGB(255, 101, 101, 101), width: 1,),
                   borderRadius: BorderRadius.circular(15),
@@ -27,7 +30,7 @@ String? Function(String?)?validator;
                   borderRadius: BorderRadius.circular(15),
                 ),
                 hintText: field_title,
-                hintStyle: const TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w500),
+                hintStyle: const TextStyle(color: Color.fromARGB(255, 96, 96, 96),fontSize: 15,fontWeight: FontWeight.w400),
               ),
             );
   }

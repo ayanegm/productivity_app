@@ -1,16 +1,15 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:productivity_app/screens/getting_personal_info.dart';
-import 'package:productivity_app/screens/login_page.dart';
-import 'package:productivity_app/screens/verfication_page.dart';
+import 'package:productivity_app/features/auth/getting_personal_info.dart';
+import 'package:productivity_app/features/auth/login_page.dart';
 import 'package:productivity_app/widgets/back_icon_button.dart';
 import 'package:productivity_app/widgets/button.dart';
 import 'package:productivity_app/widgets/custom_link.dart';
 import 'package:productivity_app/widgets/snackbar.dart';
 import 'package:productivity_app/widgets/text_field_regiter.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPageLogic extends StatelessWidget {
 final TextEditingController emailController=TextEditingController();
 final TextEditingController passwordController=TextEditingController();
 GlobalKey<FormState>formState=GlobalKey<FormState>();
@@ -69,10 +68,8 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
                 email: emailController.text,
                 password: passwordController.text,
               );
-              FirebaseAuth.instance.currentUser!.sendEmailVerification();
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return GettingPersonalInfo(email: emailController.text,uid: credential.user!.uid);
-              //  return LoginPage();
               },));
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {

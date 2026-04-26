@@ -15,7 +15,7 @@ IconData icon;
       borderRadius: BorderRadius.circular(15), 
     ),
     child:Row(
-      
+      mainAxisSize: MainAxisSize.min,
       children: [
         Stack(
           children: [
@@ -34,15 +34,17 @@ IconData icon;
         ),
                 SizedBox(width: 12,),
 
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            
-            const SizedBox(height: 10),
-            Text(title, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-            Text(count, style: const TextStyle(color: Colors.white70, fontSize: 16)),
-          ],
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              
+              const SizedBox(height: 10),
+              Text(title, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(count, style: const TextStyle(color: Colors.white70, fontSize: 16)),
+            ],
+          ),
         ),
       ],
     ) ,

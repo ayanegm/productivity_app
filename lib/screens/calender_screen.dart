@@ -29,31 +29,7 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
       _fetchTasksForSelectedDay();
     });
       }
-  // void _onDaySelected(DateTime day,DateTime focusedDay){
-  //   setState(() {
-  //     today=day;
-  //     selectedDay=day;
-  //     isLoading=true;
-  //     getTasks();
-  //   });
-  // }
-   
-//   Future<void>getTasks()async{
-// String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDay!);   
-//      final String uid=FirebaseAuth.instance.currentUser!.uid;
 
-//     if(uid !=null){
-//       var snapshot=await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').where('date',isEqualTo:formattedDate ).get();
-    
-//     List<TaskModel>fetchedTasks=snapshot.docs.map((doc){
-//       return TaskModel.fromMap(doc.data());
-//     }).toList();
-//     setState(() {
-//       allTasks=fetchedTasks;
-//       isLoading=false;
-//     });
-//   }
-//   }
 void _fetchTasksForSelectedDay(){
 String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDay!);   
 context.read<TaskProvider>().fetchTasks(formattedDate);
@@ -77,7 +53,17 @@ void _onDaySelected(DateTime day,DateTime focusedDay){
       
       body:  Column(
           children: [
-            Container(child: TableCalendar(onDaySelected: _onDaySelected,selectedDayPredicate: (day)=>isSameDay(day,today),rowHeight: 43,headerStyle: HeaderStyle(formatButtonVisible: false,titleCentered: true),focusedDay: today, firstDay: DateTime(2025,6,20), lastDay: DateTime(2030,3,14),
+            Container(child: TableCalendar(
+              onDaySelected: _onDaySelected,
+              selectedDayPredicate: (day)=>isSameDay(day,today),
+              rowHeight: 43,
+              headerStyle: HeaderStyle(
+                formatButtonVisible: false,
+                titleCentered: true
+                ),
+                focusedDay: today,
+                 firstDay: DateTime(2025,6,20),
+                  lastDay: DateTime(2030,3,14),
             calendarStyle: CalendarStyle(
               selectedDecoration: BoxDecoration(
                 color: Color(0xFF53ceaf),

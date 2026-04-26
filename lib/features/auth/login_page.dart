@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:productivity_app/models/user_model.dart';
 import 'package:productivity_app/screens/forget_password_page.dart';
 import 'package:productivity_app/screens/home_page.dart';
-import 'package:productivity_app/screens/signup_page.dart';
+import 'package:productivity_app/features/auth/signup_page_logic.dart';
 import 'package:productivity_app/widgets/button.dart';
 import 'package:productivity_app/widgets/snackbar.dart';
 import 'package:productivity_app/widgets/text_field_regiter.dart';
@@ -53,33 +53,10 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
             }
           },),
                   SizedBox(height: 20,),
-                  GestureDetector(
-                    onTap: ()async {
-                      try {
-                  if (emailController.text.trim().isEmpty) {
-                    CustomSnackBar.show(context,'Please enter an email first!');
-                    return;
-                  }
-                  await FirebaseAuth.instance.sendPasswordResetEmail(
-                    email: emailController.text.trim(), 
-                  );
-                  CustomSnackBar.show(context,'Reset link sent! Check your inbox.');
-                } catch (e) {
-                  CustomSnackBar.show(context,"Error: ${e.toString()}");
-                   }
-                   
-                    },
-                    child: Text(
-                      'Forgot Password',
-                      style: TextStyle(
-                        color:  Color(0xFF4CAF50), 
-                        fontSize: 16,
-                        decoration: TextDecoration.underline, 
-                      ),
-                    ),
-                  ),
+               
                   SizedBox(height: 25,),
-                  CustomButton(text: 'Log in',onTap: ()async{
+                  CustomButton(text: 'Log in',
+                  onTap: ()async{
                    
                   if(formState.currentState!.validate()){
                        try {
@@ -95,48 +72,50 @@ GlobalKey<FormState>formState=GlobalKey<FormState>();
                     .collection('users')
                     .doc(credential.user!.uid)
                     .get();
-                    UserModel user=UserModel.fromMap(doc.data() as Map<String ,dynamic>);
-                    if(credential.user!.emailVerified){
+                    // UserModel user=UserModel.fromMap(doc.data() as Map<String ,dynamic>);
+                    if (doc.exists && doc.data() != null) {
+                      UserModel user = UserModel.fromMap(doc.data() as Map<String, dynamic>);
+                    if(mounted){
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                      return HomePage();
                     },));
                     }
-                    else{
-                      FirebaseAuth.instance.currentUser!.sendEmailVerification();
-                      CustomSnackBar.show(context,'Please check you  email fr verification');
+                    }else{
+                      // FirebaseAuth.instance.currentUser!.sendEmailVerification();
+                      CustomSnackBar.show(context,'User data not found in database.');
                     }
 
                   } 
                   
                   on FirebaseAuthException catch (e) {
+                    String errorMessage = 'An error occurred';
                     if (e.code == 'user-not-found') {
-                      CustomSnackBar.show(context,'No user found for that email.');
+                      errorMessage='No user found for that email.';
                     } else if (e.code == 'wrong-password') {
-                      CustomSnackBar.show(context,'Wrong password provided for that user.');
+                      errorMessage='Wrong password provided for that user.';
                     }
                     else{
-                      CustomSnackBar.show(context,'error in email or password');
-                      setState(() {
-                      isLoading = false; 
-                    });
+                        errorMessage = e.message ?? 'Authentication failed';    
                     }
-                  }
-                  catch(e){
-                    CustomSnackBar.show(context,'Error: ${e.toString()}');
-                      setState(() {
-                      isLoading = false; 
-                    });
-                  }
-                  }
-                  else{
-                    CustomSnackBar.show(context,'Not valid');
-                  }
-            
+                 CustomSnackBar.show(context, errorMessage);
+      } catch (e) {
+        CustomSnackBar.show(context, 'Error: ${e.toString()}');
+      } finally {
+        // الـ finally بتضمن إن الـ loading يقف سواء نجحنا أو فشلنا
+        if (mounted) {
+          setState(() {
+            isLoading = false;
+          });
+        }
+      }
+    } else {
+      CustomSnackBar.show(context, 'Please fill in all fields correctly');
+    }
                   },),
                   SizedBox(height: 7,),
                   CustomButton(text: 'Sign up',onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SignupPage();
+              return SignupPageLogic();
             },));}),
             SizedBox(height: 20,),
             

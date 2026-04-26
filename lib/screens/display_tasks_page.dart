@@ -7,14 +7,14 @@ import 'package:productivity_app/models/task_model.dart';
 import 'package:productivity_app/widgets/bottom_navigator_bar.dart';
 import 'package:productivity_app/widgets/task_container.dart';
 
-class DisplayTasks extends StatefulWidget {
-  const DisplayTasks({super.key});
+class DisplayTasksPage extends StatefulWidget {
+  const DisplayTasksPage({super.key});
 
   @override
-  State<DisplayTasks> createState() => _AnothTasksState();
+  State<DisplayTasksPage> createState() => _AnothTasksState();
 }
 
-class _AnothTasksState extends State<DisplayTasks> {
+class _AnothTasksState extends State<DisplayTasksPage> {
 
       final String uid = FirebaseAuth.instance.currentUser!.uid;
     String todayStr = DateFormat('yyyy-MM-dd').format(DateTime.now());

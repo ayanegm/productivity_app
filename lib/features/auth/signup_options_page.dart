@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:productivity_app/screens/login_page.dart';
-import 'package:productivity_app/screens/signup_page.dart';
+import 'package:productivity_app/features/auth/login_page.dart';
+import 'package:productivity_app/features/auth/signup_page_logic.dart';
 import 'package:productivity_app/widgets/button.dart';
 
 class SignupOptionsPage extends StatelessWidget {
@@ -43,7 +43,7 @@ class SignupOptionsPage extends StatelessWidget {
             SizedBox(height: 15,),
             CustomButton(text: 'Sign up with email',onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SignupPage();
+                return SignupPageLogic();
               },));
             },)
           ]),

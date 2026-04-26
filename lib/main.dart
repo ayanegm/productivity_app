@@ -7,9 +7,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:productivity_app/firebase_options.dart';
 import 'package:productivity_app/helper/firebase_notification.dart';
-import 'package:productivity_app/helper/test_page.dart';
 import 'package:productivity_app/providers/task_provider.dart';
-import 'package:productivity_app/screens/login_page.dart';
+import 'package:productivity_app/features/auth/login_page.dart';
 import 'package:productivity_app/services/push_notification_services.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -18,6 +17,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
   PushNotificationServices.init();
 runApp(
     MultiProvider(

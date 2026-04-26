@@ -17,6 +17,8 @@ class TaskProvider with ChangeNotifier {
 
 
 Future<void>fetchLast7Days()async{
+  if (dailyProgress.isNotEmpty) return;
+  /////////////////////////////////
   String uid=FirebaseAuth.instance.currentUser!.uid;
   List<BarChartGroupData>tempList=[];
   for (int i=6;i>=0;i--){
